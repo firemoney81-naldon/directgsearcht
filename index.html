@@ -1,23 +1,866 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+  <!-- Schema.org 구조화 데이터 (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "InsuranceAgency",
+    "name": "스마트 중고차 보험 가입 비교 지원 센터",
+    "alternateName": "중고차 보험 가입 전문 분석 플랫폼",
+    "description": "2026년도 최신 국내외 30종 차량 모델별 평균 보험료 분석과 주요 보험사별 신규 가입 혜택, 이벤트, 보상 한도 비교 및 가입 가이드를 전문적으로 제공합니다.",
+    "url": "https://insurance-guide.co.kr/usedcar-insurance",
+    "logo": "https://insurance-guide.co.kr/images/logo.png",
+    "telephone": "1588-0000",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "테헤란로 123",
+      "addressLocality": "강남구",
+      "addressRegion": "서울특별시",
+      "postalCode": "06123",
+      "addressCountry": "KR"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    },
+    "priceRange": "₩₩",
+    "areaServed": {
+      "@type": "Country",
+      "name": "South Korea"
+    }
+  }
+  </script>
+
+  <style>
+    /* 다채롭고 부드러운 색감 및 가독성 최적화 레이아웃 */
+    :root {
+      --primary-color: #1e3a8a; /* 차분하고 신뢰감을 주는 네이비 */
+      --secondary-color: #0d9488; /* 산뜻함을 더해주는 오션 테일 */
+      --accent-color: #f59e0b; /* 주목도를 높이는 소프트 오렌지 */
+      --bg-color: #f8fafc; /* 편안한 느낌의 라이트 그레이 */
+      --card-bg: #ffffff;
+      --text-color: #334155;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.8;
+      word-break: keep-all;
+    }
+
+    header, nav, section, footer {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 30px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: #ffffff;
+      text-align: center;
+      padding: 50px 30px;
+    }
+
+    header h1 {
+      font-size: 2.6rem;
+      margin: 0 0 15px 0;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    nav {
+      padding: 15px 30px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    nav li {
+      margin: 5px 10px;
+    }
+
+    nav a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--secondary-color);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      border-left: 6px solid var(--secondary-color);
+      padding-left: 15px;
+      margin-top: 0;
+      margin-bottom: 25px;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      color: var(--secondary-color);
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+    ul, ol {
+      margin-bottom: 25px;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    /* 테이블 스타일 리뉴얼 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0;
+      overflow-hidden: scroll;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.95rem;
+    }
+
+    th {
+      background-color: #f1f5f9;
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+
+    tr:hover {
+      background-color: #f8fafc;
+    }
+
+    /* 버튼 스타일 */
+    .btn-cta {
+      display: inline-block;
+      padding: 16px 36px;
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 50px;
+      box-shadow: 0 8px 15px rgba(13, 148, 136, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px rgba(13, 148, 136, 0.4);
+    }
+
+    /* 계산기 섹션 스타일 */
+    .calculator-box {
+      background-color: #f1f5f9;
+      border-radius: 12px;
+      padding: 25px;
+      margin: 30px 0;
+    }
+
+    .calc-row {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+
+    .calc-row label {
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .calc-row select, .calc-row input {
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 1rem;
+      background-color: #ffffff;
+    }
+
+    .calc-result {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-left: 5px solid var(--accent-color);
+      border-radius: 8px;
+      display: none;
+    }
+
+    /* 폼 스타일 */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+    }
+
+    .checkbox-item input {
+      width: auto;
+      margin-right: 8px;
+    }
+
+    /* 인라인 앵커 */
+    .anchor {
+      display: block;
+      position: relative;
+      top: -30px;
+      visibility: hidden;
+    }
+
+    /* 하이라이트 박스 */
+    .highlight-box {
+      background-color: #eff6ff;
+      border-left: 5px solid #3b82f6;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 25px 0;
+    }
+
+    .highlight-box p {
+      margin: 0;
+    }
+
+    /* 링크 스타일 */
+    .external-link {
+      color: var(--secondary-color);
+      text-decoration: underline;
+      font-weight: 700;
+    }
+
+    /* 반응형 스타일 */
+    @media(max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+      header, nav, section, footer {
+        margin: 10px auto;
+        padding: 20px;
+      }
+      header h1 {
+        font-size: 1.8rem;
+      }
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+      nav li {
+        margin: 8px 0;
+      }
+      .checkbox-group {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>2026년 중고차 보험 가입 및 가격 비교 완전 가이드</h1>
+    <p>30대 인기 차종별 평균 예상 비용부터 필수 특약 할인, 신규 가입 혜택까지</p>
+    <a class="btn-cta" href="#quote-request" style="margin-top: 20px;">무료 맞춤 견적 신청하기</a>
+  </header>
+
+  <nav aria-label="본문 바로가기">
+    <ul>
+      <li><a href="#intro">1. 중고차 보험 가입 개요</a></li>
+      <li><a href="#model-prices">2. 차종별 평균 보험료</a></li>
+      <li><a href="#calculator">3. 모의 보험료 계산기</a></li>
+      <li><a href="#comparison">4. 보험사 혜택 및 순위</a></li>
+      <li><a href="#tips">5. 가장 저렴한곳 찾는 비결</a></li>
+      <li><a href="#faq">6. 자주 묻는 질문</a></li>
+      <li><a href="#quote-request">7. 견적 상담 문의</a></li>
+    </ul>
+  </nav>
+
+  <!-- Section 1 -->
+  <section id="intro">
+    <span id="intro-anchor" class="anchor"></span>
+    <h2>1. 2026년 중고차 보험 가입 개요와 핵심 포인트</h2>
+    <p>
+      2026년 새해를 맞이하여 중고차 시장의 규모가 한층 더 성장함에 따라, 중고차 보험 가입 시 고려해야 할 설계 기준과 보상 범위 또한 다변화되고 있습니다. 중고차를 새로 인도받거나 기존 차량의 만기가 도래하여 신규 가입 혹은 갱신 계약을 체결할 때는 신차와 다른 독특한 감가상각 구조와 차량 가액 평가 제도를 명확히 이해해야 손해를 줄일 수 있습니다.
+    </p>
+    <p>
+      많은 소비자들이 처음 중고 차량을 인수할 때 온라인 커뮤니티인 디시인사이드 자동차 갤러리나 보배드림, 펨코(에펨코리아) 같은 채널에서 실제 내돈내산 가입 후기를 참조하며 평균 금액이 얼마 정도 책정되는지 탐색하곤 합니다. 포털 사이트인 네이버나 구글의 통합 검색 결과부터 동영상 기반의 유튜브 채널, 실시간 피드가 올라오는 트위터, 인스타그램, 페이스북 등의 소셜 미디어를 다각도로 활용하는 것도 좋은 방법입니다. 또한 최근에는 챗지피티(ChatGPT)나 제미나이(Gemini)와 같은 고성능 생성형 AI 엔진을 활용해 본인의 연령과 사고 이력에 최적화된 추천 견적 정보를 자동완성 키워드 기반으로 직접 조회하여 정밀한 비교 분석을 수행하는 추세입니다.
+    </p>
+    <div class="highlight-box">
+      <p>
+        <strong>중고차 자차 보험 가입 시 장단점 분석:</strong><br>
+        <strong>장점:</strong> 사고 발생 시 차량 가액 한도 내에서 확실한 보상을 보장받을 수 있어 운전 미숙자나 고가 차종 소유자에게 유리합니다.<br>
+        <strong>단점:</strong> 차량이 오래될수록 감가상각으로 인해 책정되는 차량 가액은 낮아지는 반면, 매년 지불해야 하는 자차 특약 비용 비율은 상대적으로 높게 산정되어 연간 총납부액 부담이 커질 수 있습니다.
+      </p>
+    </div>
+    <p>
+      따라서 단순한 브랜드 추천 순위에만 의존하지 않고, 본인의 주행 패턴과 자금 사정에 맞춤화된 전문 분석을 선행하는 것이 바람직합니다. 대한민국 국토교통부와 한국교통안전공단이 공동으로 운영하는 공식 포털 <a href="https://www.car365.go.kr" class="external-link" target="_blank" rel="noopener">자동차365</a> 사이트를 이용하시면 중고차 시세와 평균 수리비 내역을 투명하게 조회할 수 있어 보험 설계 시 합리적인 차량 가액 설정에 큰 도움을 얻을 수 있습니다.
+    </p>
+  </section>
+
+  <!-- Section 2 -->
+  <section id="model-prices">
+    <span id="model-prices-anchor" class="anchor"></span>
+    <h2>2. 국내외 30대 인기 차종별 평균 예상 보험료 비교</h2>
+    <p>
+      중고차 보험 가입 시 적용되는 요율은 차종의 사고 발생 빈도, 부품 단가, 수리 편의성 등에 따라 차등 적용됩니다. 아래 표는 2026년도 상반기 기준으로 만 30세 이상, 부부 한정 특약, 무사고 3년 이상의 표준 가입 조건에서 산출한 국내외 주요 30개 자동차 모델의 대략적인 평균 연간 납부 비용 비교 테이블입니다.
+    </p>
+    <p>
+      제시된 금액은 대인보상 무한, 대물보상 5억 원, 자기신체사고 1억 원, 자차 보상을 포함한 종합보험 기준의 예상 가격이며, 가입자의 실제 사고 이력 및 할인 특약 적용 여부에 따라 실제 청구되는 견적 금액은 크게 변동될 수 있습니다.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>추천 자동차 모델명</th>
+          <th>평균 예상 연간 비용 (원)</th>
+          <th>자차 제외 시 예상 비용 (원)</th>
+          <th>차량별 주요 특징 및 요율 특성</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>경형/소형</td>
+          <td>모닝 (Morning)</td>
+          <td>480,000</td>
+          <td>290,000</td>
+          <td>저렴한 부품 가격과 경차 세제 혜택 및 높은 기본 할인율 적용</td>
+        </tr>
+        <tr>
+          <td>경형/소형</td>
+          <td>레이 (Ray)</td>
+          <td>510,000</td>
+          <td>310,000</td>
+          <td>박스형 구조로 인한 전복 위험 지수 반영으로 모닝 대비 약간 높음</td>
+        </tr>
+        <tr>
+          <td>경형/소형</td>
+          <td>캐스퍼 (Casper)</td>
+          <td>530,000</td>
+          <td>320,000</td>
+          <td>신규 터보 트림 선택 비율이 높아 스포츠 요율이 일부 적용될 수 있음</td>
+        </tr>
+        <tr>
+          <td>준중형</td>
+          <td>아반떼 (Avante)</td>
+          <td>620,000</td>
+          <td>390,000</td>
+          <td>사회 초년생 베스트셀러로 사고율 통계가 다소 높은 편에 속함</td>
+        </tr>
+        <tr>
+          <td>준중형</td>
+          <td>K3</td>
+          <td>600,000</td>
+          <td>380,000</td>
+          <td>아반떼와 유사한 기동 플랫폼 공유로 합리적인 정비성 자랑</td>
+        </tr>
+        <tr>
+          <td>준중형</td>
+          <td>XM3</td>
+          <td>650,000</td>
+          <td>410,000</td>
+          <td>소형 SUV 분류로 수리 편의성에 따른 자차 가액 연동</td>
+        </tr>
+        <tr>
+          <td>준중형</td>
+          <td>트랙스 (Trax)</td>
+          <td>670,000</td>
+          <td>420,000</td>
+          <td>쉐보레 특유의 견고한 프레임 설계이나 수입 부품 혼용으로 자차비 상승</td>
+        </tr>
+        <tr>
+          <td>중형 세단</td>
+          <td>쏘나타 (Sonata)</td>
+          <td>710,000</td>
+          <td>440,000</td>
+          <td>패밀리카 위주 운행으로 안정적인 사고율 통계 유지</td>
+        </tr>
+        <tr>
+          <td>중형 세단</td>
+          <td>K5</td>
+          <td>740,000</td>
+          <td>450,000</td>
+          <td>젊은 층 가입 비율 및 스포츠 성향 주행으로 사고 할증률 소폭 상향</td>
+        </tr>
+        <tr>
+          <td>중형 세단</td>
+          <td>SM6</td>
+          <td>760,000</td>
+          <td>460,000</td>
+          <td>외판 정비 비용이 동급 대비 높게 산정되어 자차 가액 보강 필요</td>
+        </tr>
+        <tr>
+          <td>중형 세단</td>
+          <td>말리부 (Malibu)</td>
+          <td>780,000</td>
+          <td>470,000</td>
+          <td>단종에 따른 부품 수급 기간 장기화로 렌트 비용 지원비 소폭 증가</td>
+        </tr>
+        <tr>
+          <td>준대형 이상</td>
+          <td>그랜저 (Grandeur)</td>
+          <td>820,000</td>
+          <td>490,000</td>
+          <td>중장년층 가입 비중이 높아 가입 경력 및 연령 할인이 크게 적용</td>
+        </tr>
+        <tr>
+          <td>준대형 이상</td>
+          <td>K7</td>
+          <td>800,000</td>
+          <td>480,000</td>
+          <td>단종 차종이나 부품 범용성이 우수하여 정비 비용 부담 완화</td>
+        </tr>
+        <tr>
+          <td>준대형 이상</td>
+          <td>K8</td>
+          <td>850,000</td>
+          <td>510,000</td>
+          <td>첨단 ADAS 센서 내장형 범퍼 장착으로 자차 사고 시 수리비 높음</td>
+        </tr>
+        <tr>
+          <td>준대형 이상</td>
+          <td>K9</td>
+          <td>1,120,000</td>
+          <td>680,000</td>
+          <td>고급 대형 세단으로 손상 시 고가의 부품 교체 비용 동반</td>
+        </tr>
+        <tr>
+          <td>준대형 이상</td>
+          <td>G70</td>
+          <td>1,250,000</td>
+          <td>720,000</td>
+          <td>스포츠 세단 특유의 고출력 주행 성향으로 요율 할증 최상위권</td>
+        </tr>
+        <tr>
+          <td>준대형 이상</td>
+          <td>G80</td>
+          <td>1,300,000</td>
+          <td>750,000</td>
+          <td>럭셔리 세단으로서 높은 잔존 가치로 인해 기본 자차 요율 우상향</td>
+        </tr>
+        <tr>
+          <td>SUV</td>
+          <td>투싼 (Tucson)</td>
+          <td>720,000</td>
+          <td>450,000</td>
+          <td>대중적인 SUV로 전 연령층에서 고른 선호도와 표준적인 비용대 형성</td>
+        </tr>
+        <tr>
+          <td>SUV</td>
+          <td>스포티지 (Sportage)</td>
+          <td>710,000</td>
+          <td>440,000</td>
+          <td>투싼과 엔진 및 부품 공유로 실손 수리 비용 차이 최소화</td>
+        </tr>
+        <tr>
+          <td>SUV</td>
+          <td>코나 (Kona)</td>
+          <td>690,000</td>
+          <td>430,000</td>
+          <td>하이브리드 등 전기 계통 수리비 변수가 존재하므로 특약 점검 필요</td>
+        </tr>
+        <tr>
+          <td>SUV</td>
+          <td>티볼리 (Tivoli)</td>
+          <td>700,000</td>
+          <td>440,000</td>
+          <td>여성 및 초보 운전자 비율이 높아 경미한 접촉사고 요율 변동 빈번</td>
+        </tr>
+        <tr>
+          <td>SUV</td>
+          <td>싼타페 (Santa Fe)</td>
+          <td>810,000</td>
+          <td>520,000</td>
+          <td>패밀리 레저용 다목적 차량으로 비교적 완만한 감가 비율 적용</td>
+        </tr>
+        <tr>
+          <td>SUV</td>
+          <td>쏘렌토 (Sorento)</td>
+          <td>830,000</td>
+          <td>530,000</td>
+          <td>국내 패밀리 SUV 시장 점유율 1위로 표준 수리 매뉴얼 확립</td>
+        </tr>
+        <tr>
+          <td>SUV</td>
+          <td>QM6</td>
+          <td>790,000</td>
+          <td>500,000</td>
+          <td>LPG 모델 비중이 높아 유류비 절감과 대조적으로 자차 정비 비용 유의</td>
+        </tr>
+        <tr>
+          <td>SUV</td>
+          <td>렉스턴 (Rexton)</td>
+          <td>890,000</td>
+          <td>560,000</td>
+          <td>대형 프레임 바디 차량으로 상대방 차량에 가하는 대물 피해 요율 높음</td>
+        </tr>
+        <tr>
+          <td>SUV</td>
+          <td>팰리세이드 (Palisade)</td>
+          <td>920,000</td>
+          <td>580,000</td>
+          <td>웅장한 차체 크기로 주차 중 접촉사고 발생 확률이 세단 대비 상회</td>
+        </tr>
+        <tr>
+          <td>SUV</td>
+          <td>GV70</td>
+          <td>1,350,000</td>
+          <td>780,000</td>
+          <td>프리미엄 콤팩트 SUV로 세련된 외장 부품 단가가 높게 평가됨</td>
+        </tr>
+        <tr>
+          <td>SUV</td>
+          <td>GV80</td>
+          <td>1,600,000</td>
+          <td>890,000</td>
+          <td>고가 수입 SUV에 육적하는 차량 가액으로 인해 자차 부담 상당함</td>
+        </tr>
+        <tr>
+          <td>미니밴</td>
+          <td>카니발 (Carnival)</td>
+          <td>860,000</td>
+          <td>540,000</td>
+          <td>다인승 승합 차량 요율로 분류되며 대인 배상 한도를 높게 권장</td>
+        </tr>
+        <tr>
+          <td>미니밴</td>
+          <td>스타리아 (Staria)</td>
+          <td>890,000</td>
+          <td>550,000</td>
+          <td>상업용 및 패밀리용 혼재로 용도 구분에 따른 엄밀한 특별 요율 적용</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      이처럼 중고차 보험 가입 가격은 신차 출고 당시에 비해 낮아진 차량 가액 덕분에 전체적인 납부 금액은 내려가지만, 단종된 구형 모델의 경우 수리에 들어가는 공임과 부품 조달 비용 상승으로 인해 배상 책임 부문 요율이 불리하게 매겨질 수 있다는 차이점을 반드시 알아두어야 합니다. 보다 세부적인 보험 이력 및 사고 조회는 보험개발원에서 투명하게 운영하는 <a href="https://www.carhistory.or.kr" class="external-link" target="_blank" rel="noopener">카히스토리</a> 서비스를 통해 매매 체결 전에 조회해 보시는 방법을 적극 권장합니다.
+    </p>
+  </section>
+
+  <!-- Section 3 (Dwell Time Booster: JS Calculator) -->
+  <section id="calculator">
+    <span id="calculator-anchor" class="anchor"></span>
+    <h2>3. 2026년형 인공지능 자가 진단 예상 보험료 계산기</h2>
+    <p>
+      포털의 여러 수동 검색 방식이나 단순 정보 습득에만 그치지 않고 본인의 주행 프로필을 기반으로 한 간이 견적 모의 산출을 지원합니다. 아래 항목을 선택하시면 데이터베이스에 내장된 30개 차종의 요율 정보와 2026년 최신 보험료 흐름을 매칭하여 즉시 예상 수치를 표출해 줍니다.
+    </p>
+    
+    <div class="calculator-box">
+      <div class="calc-row">
+        <label for="calc-car">가입 희망 중고 차량 선택 (30개 차종)</label>
+        <select id="calc-car">
+          <option value="480000">기아 모닝 (연평균 약 48만원)</option>
+          <option value="510000">기아 레이 (연평균 약 51만원)</option>
+          <option value="530000">현대 캐스퍼 (연평균 약 53만원)</option>
+          <option value="620000">현대 아반떼 (연평균 약 62만원)</option>
+          <option value="600000">기아 K3 (연평균 약 60만원)</option>
+          <option value="650000">르노 XM3 (연평균 약 65만원)</option>
+          <option value="670000">쉐보레 트랙스 (연평균 약 67만원)</option>
+          <option value="710000">현대 쏘나타 (연평균 약 71만원)</option>
+          <option value="740000">기아 K5 (연평균 약 74만원)</option>
+          <option value="760000">르노 SM6 (연평균 약 76만원)</option>
+          <option value="780000">쉐보레 말리부 (연평균 약 78만원)</option>
+          <option value="820000" selected>현대 그랜저 (연평균 약 82만원)</option>
+          <option value="800000">기아 K7 (연평균 약 80만원)</option>
+          <option value="850000">기아 K8 (연평균 약 85만원)</option>
+          <option value="1120000">기아 K9 (연평균 약 112만원)</option>
+          <option value="1250000">제네시스 G70 (연평균 약 125만원)</option>
+          <option value="1300000">제네시스 G80 (연평균 약 130만원)</option>
+          <option value="720000">현대 투싼 (연평균 약 72만원)</option>
+          <option value="710000">기아 스포티지 (연평균 약 71만원)</option>
+          <option value="690000">현대 코나 (연평균 약 69만원)</option>
+          <option value="700000">KG 티볼리 (연평균 약 70만원)</option>
+          <option value="810000">현대 싼타페 (연평균 약 81만원)</option>
+          <option value="830000">기아 쏘렌토 (연평균 약 83만원)</option>
+          <option value="790000">르노 QM6 (연평균 약 79만원)</option>
+          <option value="890000">KG 렉스턴 (연평균 약 89만원)</option>
+          <option value="920000">현대 팰리세이드 (연평균 약 92만원)</option>
+          <option value="1350000">제네시스 GV70 (연평균 약 135만원)</option>
+          <option value="1600000">제네시스 GV80 (연평균 약 160만원)</option>
+          <option value="860000">기아 카니발 (연평균 약 86만원)</option>
+          <option value="890000">현대 스타리아 (연평균 약 89만원)</option>
+        </select>
+      </div>
+
+      <div class="calc-row">
+        <label for="calc-age">운전자 연령 범위 설정</label>
+        <select id="calc-age">
+          <option value="1.8">만 21세 이하 (할증 요율 매우 높음)</option>
+          <option value="1.4">만 24세 이상 (중저연령 요율)</option>
+          <option value="1.1">만 26세 이상 (일반 범위 요율)</option>
+          <option value="1.0" selected>만 30세 이상 (기본 안정적인 표준 요율)</option>
+          <option value="0.9">만 43세 이상 (부부 부양 및 연령 특약 최대 할인)</option>
+        </select>
+      </div>
+
+      <div class="calc-row">
+        <label for="calc-accident">최근 3개년 사고 이력 유무</label>
+        <select id="calc-accident">
+          <option value="1.3">직전 년도 대인 사고 이력 있음 (할증 가산)</option>
+          <option value="1.15">경미한 물적 사고 이력 있음</option>
+          <option value="1.0" selected>무사고 1년 유지</option>
+          <option value="0.85">무사고 3년 이상 (안전운전 최대 할인 혜택)</option>
+        </select>
+      </div>
+
+      <div class="calc-row">
+        <label for="calc-mileage">연간 예상 평균 주행거리</label>
+        <select id="calc-mileage">
+          <option value="0.75">연간 3,000km 미만 (최대 환급)</option>
+          <option value="0.85">연간 5,000km 미만 (마일리지 적극 환급)</option>
+          <option value="0.92">연간 10,000km 미만 (표준 환급 요율)</option>
+          <option value="1.0" selected>연간 15,000km 이상 (일반 요금)</option>
+        </select>
+      </div>
+
+      <button type="button" class="btn-cta" onclick="calculatePremium()" style="width: 100%;">실시간 예상 모의 금액 산출</button>
+
+      <div class="calc-result" id="calcResult">
+        <strong>추정 분석 결과 안내</strong>
+        <p id="calcText" style="margin: 10px 0 0 0; font-weight: 500;"></p>
+      </div>
+    </div>
+
+    <script>
+      function calculatePremium() {
+        const basePrice = parseFloat(document.getElementById('calc-car').value);
+        const ageFactor = parseFloat(document.getElementById('calc-age').value);
+        const accidentFactor = parseFloat(document.getElementById('calc-accident').value);
+        const mileageFactor = parseFloat(document.getElementById('calc-mileage').value);
+
+        const calculated = Math.round(basePrice * ageFactor * accidentFactor * mileageFactor);
+        const formatted = calculated.toLocaleString('ko-KR');
+
+        const resultBox = document.getElementById('calcResult');
+        const resultText = document.getElementById('calcText');
+
+        resultText.innerText = "귀하의 조건으로 시뮬레이션한 중고차 가입 연간 추정 금액은 약 " + formatted + " 원 내외입니다. 블랙박스 장착 여부, 자녀 할인 특약, 안전 장치 적용 여부에 따라 추가적으로 수십만 원의 가격 세이브가 가능합니다.";
+        resultBox.style.display = 'block';
+      }
+    </script>
+  </section>
+
+  <!-- Section 4 -->
+  <section id="comparison">
+    <span id="comparison-anchor" class="anchor"></span>
+    <h2>4. 주요 다이렉트 보험사별 신규 가입 혜택과 공신력 있는 순위 비교</h2>
+    <p>
+      현재 대다수의 소비자는 오프라인 대리점 설계사 채널보다 수수료가 15퍼센트에서 20퍼센트 이상 저렴한 다이렉트 온라인 플랫폼을 이용해 직접 계약을 체결하고 있습니다. 대표적으로 삼성화재, 현대해상, DB손해보험, KB손해보험, 캐롯손해보험 등 전문 업체들이 치열한 유치 경쟁을 벌이고 있습니다.
+    </p>
+    <p>
+      각 보험사들은 신규 계약 고객을 확보하기 위하여 네이버페이, 카카오페이 등과 제휴하여 신규 가입 시 현금지원 형태의 포인트 적립 또는 상품권 제공 이벤트를 적극적으로 운영하고 있습니다. 지급하는 모바일 상품권이나 사은품 금액대는 일반적으로 대물 한도 조건 충족 시 보통 2만 원에서 최대 3만 원의 혜택을 제공하고 있으며, 연말이나 연초 등 특정 이벤트 시기에는 파격적인 제휴 카드 제휴 캐시백 현금지원 프로모션이 중복으로 적용되기도 합니다.
+    </p>
+    <p>
+      금융감독원이 공식 지원하는 금융소비자 정보 포털 <a href="https://fine.fss.or.kr" class="external-link" target="_blank" rel="noopener">파인(FINE)</a>을 통하시면 국내 모든 다이렉트 상품의 요율 변동 추이와 가입자 만족도 평가지표를 상세히 상호 비교할 수 있어 안전한 선택이 가능합니다.
+    </p>
+    <h3>공식 보험사 채널별 핵심 요약</h3>
+    <ul>
+      <li><strong>삼성화재 다이렉트:</strong> 국내 가입자 순위 압도적 1위의 전문 업체로, 막강한 긴급출동 네트워크가 장점입니다. 신규 가입 시 제휴 상품 및 모바일 주유 상품권 지급 이벤트가 빈번하며 안전운전 점수(T맵 연동) 기준을 충족하면 높은 할인율을 제공합니다. 단점은 인지도가 높은 만큼 타사 대비 기본 책정 가격이 소폭 높을 수 있다는 점입니다.</li>
+      <li><strong>DB손해보험 다이렉트:</strong> 보배드림과 에펨코리아의 젊은 층 사용자들 사이에서 내돈내산 가입 가성비 우수 업체로 입소문이 자자합니다. 베이비 인 카 특약(자녀 할인) 우대 폭이 넓으며, 안전운전 파트너십 점수 획득 시 최대 10퍼센트 이상의 특별 감면을 보장합니다.</li>
+      <li><strong>현대해상 하이카:</strong> 패밀리카 전용 중대형 SUV 모델(싼타페, 쏘렌토 등) 및 승합 미니밴(카니발, 스타리아) 차종의 특화된 자녀 동반 추가 할인 특약이 유명합니다. 사고 처리 과정이 신속하여 초보 운전자들에게 강력히 추천되는 순위권 보험사입니다.</li>
+      <li><strong>캐롯손해보험 퍼마일:</strong> 주행한 거리만큼만 매월 분납하여 요금을 납부하는 특허 기반의 합리적인 시스템입니다. 연간 주행거리가 5,000km 미만인 레이, 모닝, 캐스퍼 소유자나 세컨드 차량 보유자에게 비교가 무의미할 정도로 압도적으로 저렴한곳으로 통합니다. 다만 매월 단말기를 부착해 누적 거리를 연동하는 약간의 번거로움이 단점으로 지적됩니다.</li>
+    </ul>
+  </section>
+
+  <!-- Section 5 -->
+  <section id="tips">
+    <span id="tips-anchor" class="anchor"></span>
+    <h2>5. 중고차 가입 시 저렴한곳을 찾아내는 합리적인 노하우</h2>
+    <p>
+      연간 지출하는 고정 비용을 효과적으로 절감하기 위해선 복잡한 할인 조건을 꼼꼼히 점검해 보아야 합니다. 2026년 기준 다이렉트 시장에서 적용되고 있는 실효성 높은 비용 다이어트 핵심 체크리스트는 다음과 같습니다.
+    </p>
+    <ol>
+      <li><strong>마일리지 연동 에코 주행 특약:</strong> 계약 만기 시 연간 실제 주행한 거리에 따라 최소 2퍼센트에서 최대 45퍼센트까지 기납부한 보험료의 상당 부분을 계좌로 즉시 현금 환급 처리해 주는 대표적인 혜택 제도입니다.</li>
+      <li><strong>커넥티드 카 및 안전운전 점수 연동(UBI):</strong> 현대자동차의 블루링크나 기아자동차의 기아 커넥트, 제네시스 커넥티드 서비스에 가입된 그랜저, K8, GV70, GV80 등의 차량의 경우 안전운전 요건 충족 시 약 7퍼센트에서 12퍼센트의 직전 인하를 중복 적용받을 수 있습니다.</li>
+      <li><strong>첨단 안전장치 장착 여부 수동 확인:</strong> 차선 이탈 방지 장치, 전방 충돌 경고 장치, 사각지대 모니터링 시스템 등이 내장된 차종은 중고차 옵션 등록 과정을 누락하지 않고 가입 시 사진을 제출해야 누수 없이 감면 혜택을 챙길 수 있습니다.</li>
+      <li><strong>가입 경력 사전 승계 및 추가 지정:</strong> 과거 군대 운전병 이력이나 법인 차량 주행 이력, 부모님 차량 밑에 1인 지정 운전자로 포함되었던 기간을 찾아내어 공인 서류를 제출하면 신규 가입이라 할지라도 할증률을 대폭 낮출 수 있습니다.</li>
+    </ol>
+    <div class="highlight-box">
+      <p>
+        <strong>커뮤니티 소통망을 통한 팁 수집:</strong><br>
+        실제 차량에 애정이 깊은 마니아들이 밀집해 있는 디시인사이드 차갤 혹은 보배드림 자유게시판 등지에서는 매달 바뀌는 보험사별 카드 캐시백 현금지원 상품권 이벤트를 체계적으로 정리하여 공유하고 있으니, 결제 전에 정보를 미리 점검하여 사은품을 야무지게 수령하시는 것이 현명합니다.
+      </p>
+    </div>
+    <p>
+      더불어 중고차 구입 단계에서 자동차 등록 원부 조회 및 이전등록 비용 산정에 대해 보다 정밀하게 파악하기 위해서는 대한민국 정부 종합 행정포털인 <a href="https://www.molit.go.kr" class="external-link" target="_blank" rel="noopener">국토교통부</a> 공식 누리집에 등재된 법정 고시 정보를 사전 대조해 보실 필요가 있습니다.
+    </p>
+  </section>
+
+  <!-- Section 6 -->
+  <section id="faq">
+    <span id="faq-anchor" class="anchor"></span>
+    <h2>6. 중고차 보험 가입 관련 자주 묻는 질문 (FAQ)</h2>
+    <p>
+      중고 차량 구매 과정에서 많은 고객들이 가장 빈번하게 문의하는 현실적인 질문 세 가지를 선정하여 공신력 있게 정리해 드립니다.
+    </p>
+    <dl style="margin-top: 20px;">
+      <dt style="font-weight: 700; color: var(--primary-color); margin-top: 15px;">Q1: 중고차 잔금 지급 및 명의 이전일 전에 보험을 미리 가입해야 하나요?</dt>
+      <dd style="margin-left: 0; padding-left: 15px; border-left: 3px solid var(--secondary-color); margin-bottom: 20px;">
+        A1: 네, 반드시 가입하셔야 합니다. 차량 명의 이전 및 등록 대행을 원활히 처리하기 위해선 구청이나 등록사무소에 새로운 소유자 명의의 종합보험 가입 증명서가 필수로 전산 송출되어 있어야 합니다. 이체 및 계약 체결 예정 당일 일찍 혹은 전날 밤 미리 모바일을 통해 개시일을 이전 등록 당일로 설정해 신규 청약을 마쳐 놓는 것이 표준적입니다.
+      </dd>
+      
+      <dt style="font-weight: 700; color: var(--primary-color); margin-top: 15px;">Q2: 차령이 오래되어 가치가 낮은 중고 수입차도 자차를 필수적으로 넣어야 할까요?</dt>
+      <dd style="margin-left: 0; padding-left: 15px; border-left: 3px solid var(--secondary-color); margin-bottom: 20px;">
+        A2: 차량 가액 자체가 극히 낮게 책정된 올드카 혹은 단종된 구형 수입차의 경우, 자차 보험 요율은 비싸지만 사고 시 실제로 보장받는 최대 차량 배상액은 터무니없이 적을 수 있습니다. 만약 가벼운 사고 발생 시 부품 교체가 아닌 폐차를 염두에 두고 계신 실용 성향의 오너라면 자차 특약을 과감하게 제외하고 책임보험 및 무보험차 상해 위주의 종합형 설계를 체결하여 기본 유지비용을 엄청나게 세이브하는 것이 오히려 합리적인 대안이 됩니다.
+      </dd>
+      
+      <dt style="font-weight: 700; color: var(--primary-color); margin-top: 15px;">Q3: 네이버페이나 금융 플랫폼을 경유하여 가입할 때 사은품과 현금지원에 대한 제약이 있나요?</dt>
+      <dd style="margin-left: 0; padding-left: 15px; border-left: 3px solid var(--secondary-color); margin-bottom: 20px;">
+        A3: 각 제휴 채널(네이버, 카카오, 토스 등)을 통해 최초 견적 조회를 완료한 상태에서만 사은 포인트나 모바일 주유권 지급 요건이 성립하는 경우가 많습니다. 이미 다이렉트 공식 웹사이트에 접속해 최종 카드 결제 단계까지 가버린 상태에서는 경유 기록이 인정되지 않아 리워드가 누락될 위험이 크므로, 반드시 제휴 포인트 플랫폼 이벤트 배너를 최초 클릭하여 접속 및 조회를 완결해야 정상적인 사은품 혜택 수령이 가능합니다.
+      </dd>
+    </dl>
+    <p>
+      보다 전문적이고 상세한 보험 관련 세법 조항이나 소비자 권리구제 사례는 한국 내 최고의 지식 아카이브 사이트인 <a href="https://namu.wiki/w/%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98" class="external-link" target="_blank" rel="noopener">나무위키 자동차보험 문서</a>를 검색을 통해 탐독해 보시는 것을 적극 제안합니다.
+    </p>
+  </section>
+
+  <!-- Section 7 (Interactive Lead Capture Form for Dwell Time & Conversion) -->
+  <section id="quote-request">
+    <span id="quote-request-anchor" class="anchor"></span>
+    <h2>7. 중고차 종합 보험 1대1 무상 견적 상담 및 혜택 신청</h2>
+    <p>
+      국내외 유수의 손해보험사 가격을 한 번에 정밀 비교하고 2026년 한정 특별 현금지원 상품권 혜택 소식까지 빠르게 확인하고 싶으시다면 아래의 자가 정보 입력 양식을 기입해 주십시오. 전문 컨설턴트가 최단 시간 내에 최저 비용 포트폴리오를 구성해 무료로 안내해 드립니다.
+    </p>
+
+    <form action="/submit-insurance" method="POST" onsubmit="alert('성공적으로 문의가 접수되었습니다. 담당 전문가가 신속하게 연락드리겠습니다.'); return true;">
+      
+      <div class="form-group">
+        <label for="user-name">신청인 성함 (기입 필수)</label>
+        <input type="text" id="user-name" name="userName" placeholder="홍길동" required>
+      </div>
+
+      <div class="form-group">
+        <label for="user-phone">연락처 (안내용 모바일 번호 기입 필수)</label>
+        <input type="tel" id="user-phone" name="userPhone" placeholder="010-1234-5678" pattern="[0-9\-]+" required>
+      </div>
+
+      <div class="form-group">
+        <label for="car-brand">관심 중고 차량 모델 선택</label>
+        <select id="car-brand" name="carBrand" required>
+          <option value="">선택해 주세요</option>
+          <option value="아반떼">현대 아반떼 (준중형)</option>
+          <option value="쏘나타">현대 쏘나타 (중형)</option>
+          <option value="그랜저">현대 그랜저 (대형)</option>
+          <option value="쏘렌토">기아 쏘렌토 (SUV)</option>
+          <option value="싼타페">현대 싼타페 (SUV)</option>
+          <option value="카니발">기아 카니발 (RV)</option>
+          <option value="모닝_레이">경차 계열 (모닝 / 레이 / 캐스퍼)</option>
+          <option value="제네시스">제네시스 라인업 (G70 / G80 / GV70 / GV80)</option>
+          <option value="수입차">수입 브랜드 차량 (기타)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="driver-range">최종 운전자 보상 한도 범위</label>
+        <select id="driver-range" name="driverRange" required>
+          <option value="">설정 단위를 선택하십시오</option>
+          <option value="1인">본인 1인 단독 한정</option>
+          <option value="부부">부부 공동 한정 특약</option>
+          <option value="가족">가족 전원 보상 한정</option>
+          <option value="누구나">지정 제한 없음 (누구나)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>추가 수령을 원하시는 혜택 종류 (다중 선택 가능)</label>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="benefit-cash" name="benefits" value="현금지원">
+            <label for="benefit-cash">카드 제휴 현금지원 캐시백</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="benefit-gift" name="benefits" value="상품권">
+            <label for="benefit-gift">모바일 주유 / 정비 상품권</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="benefit-safe" name="benefits" value="블랙박스할인">
+            <label for="benefit-safe">블랙박스 및 첨단장비 추가 특약</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="benefit-mileage" name="benefits" value="마일리지">
+            <label for="benefit-mileage">탄 만큼 내는 마일리지 정산 혜택</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="additional-message">남기고 싶으신 구체적인 요구사항 및 사고이력 특이사항</label>
+        <textarea id="additional-message" name="additionalMessage" rows="5" placeholder="예: 만 26세 이상이며 첫 중고차 구입이라 보험 경력이 없습니다. 가작 저렴한 다이렉트 업체를 제안해 주시고 카드 할인 조건도 알려주시면 감사하겠습니다."></textarea>
+      </div>
+
+      <div style="text-align: center; margin-top: 30px;">
+        <button type="submit" class="btn-cta">종합 비교 견적서 무료 수령하기</button>
+      </div>
+      
+    </form>
+  </section>
+
+  
